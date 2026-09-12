@@ -61,11 +61,15 @@ Configure the trigger for **Object Created** events in the `input/` folder.
 
 ### 5. Configure IAM Role
 
-Create or use a Lambda execution role with permissions to:
+Create an IAM execution role for the Lambda function.
 
-- Read objects from S3
-- Write objects to S3
-- Write logs to CloudWatch
+Attach the required permissions for:
+
+- Reading objects from the S3 bucket
+- Writing processed objects to the S3 bucket
+- Writing logs to CloudWatch
+
+The Lambda function uses this IAM role to securely access AWS services without storing AWS access keys in the code.
 
 ### 6. Test the Project
 
@@ -73,7 +77,9 @@ Upload an image to the `input/` folder.
 
 S3 automatically triggers Lambda.
 
-The processed image will be saved in the `output/` folder.
+Lambda processes the image using Pillow.
+
+The processed image is saved in the `output/` folder.
 
 ## 📦 Install Dependencies
 
@@ -93,8 +99,24 @@ The complete workflow is automated:
 
 AWS credentials are not stored inside the code.
 
-Lambda uses an **IAM execution role** to access the required AWS services.
+Lambda uses an **IAM execution role** with the required permissions.
+
+For production environments, permissions should follow the **Principle of Least Privilege**.
+
+## 📚 What I Learned
+
+- AWS Lambda
+- Amazon S3
+- S3 Event Triggers
+- IAM Roles & Permissions
+- CloudWatch Logs
+- Python & Boto3
+- Pillow
+- Serverless Architecture
+- Git & GitHub
 
 ## 👨‍💻 Author
 
 **Tahir**
+
+**DevOps & Cloud Learner**
